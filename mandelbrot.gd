@@ -1,9 +1,13 @@
 extends Control
 
+signal coordinates_updated(top_left: Vector2, bottom_right: Vector2)
+signal scale_updated(new_scale: float)
+
 var dragging = false
 var current_zoom: float
 var current_position: Vector2
 var mouse_pos: Vector2
+var mouse_outside = false
 
 @export var canvas_size: Vector2
 @export var initial_position: Vector2
@@ -23,7 +27,7 @@ var mouse_pos: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	size = canvas_size
+	#size = canvas_size
 	material.set_shader_parameter("size", size)
 	material.set_shader_parameter("position", initial_position)
 	material.set_shader_parameter("offset", offset)
@@ -46,8 +50,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
-	
+	var current_scale = 2.0 - current_zoom;
+	var aspect_ratio = size / size.y;
+	var position_corr = current_position + offset;
+	var uv0 = Vector2(1, -1) * (current_scale * Vector2(0, 0) * aspect_ratio - position_corr)
+	var uv1 = Vector2(1, -1) * (current_scale * Vector2(1, 1) * aspect_ratio - position_corr)
+	coordinates_updated.emit(uv0, uv1)
+	scale_updated.emit(current_scale)
 
 func _input(event):
 	current_zoom = material.get_shader_parameter("zoom")
@@ -56,9 +65,13 @@ func _input(event):
 	# Recording mouse position to make zoom go towards mouse pointer
 	if event is InputEventMouse:
 		mouse_pos = event.position
-	
+		if mouse_pos.x > size.x or mouse_pos.y > size.y:
+			mouse_outside = true
+		else:
+			mouse_outside = false
+			
 	# Canvas dragging
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not mouse_outside:
 		# Start dragging on click
 		if not dragging and event.pressed:
 			dragging = true
@@ -95,4 +108,36 @@ func _on_parameter_control_time_scale_parameter_changed(parameter_key: String, n
 
 
 func _on_parameter_control_palette_scale_parameter_changed(parameter_key: String, new_value: float) -> void:
+	material.set_shader_parameter(parameter_key, new_value)
+
+
+func _on_parameter_control_palette_scale_modulation_parameter_changed(parameter_key: String, new_value: float) -> void:
+	material.set_shader_parameter(parameter_key, new_value)
+
+
+func _on_parameter_control_palette_scale_modulation_speed_parameter_changed(parameter_key: String, new_value: float) -> void:
+	material.set_shader_parameter(parameter_key, new_value)
+
+
+func _on_parameter_control_iteration_effect_parameter_changed(parameter_key: String, new_value: float) -> void:
+	material.set_shader_parameter(parameter_key, new_value)
+
+
+func _on_parameter_control_iteration_effect_modulation_parameter_changed(parameter_key: String, new_value: float) -> void:
+	material.set_shader_parameter(parameter_key, new_value)
+
+
+func _on_parameter_control_iteration_effect_modulation_speed_parameter_changed(parameter_key: String, new_value: float) -> void:
+	material.set_shader_parameter(parameter_key, new_value)
+
+
+func _on_parameter_control_gamma_parameter_changed(parameter_key: String, new_value: float) -> void:
+	material.set_shader_parameter(parameter_key, new_value)
+
+
+func _on_parameter_control_gamma_modulation_parameter_changed(parameter_key: String, new_value: float) -> void:
+	material.set_shader_parameter(parameter_key, new_value)
+
+
+func _on_parameter_control_gamma_modulation_speed_parameter_changed(parameter_key: String, new_value: float) -> void:
 	material.set_shader_parameter(parameter_key, new_value)

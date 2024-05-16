@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8tvjkmbunjo0"]
+[gd_scene load_steps=7 format=3 uid="uid://b8tvjkmbunjo0"]
 
 [ext_resource type="PackedScene" uid="uid://ilni8p6uokth" path="res://mandelbrot.tscn" id="1_hjfbu"]
+[ext_resource type="Script" path="res://mandelbrot_explorer.gd" id="1_wak15"]
+[ext_resource type="FontFile" uid="uid://dgfsivmvqujnp" path="res://MonaspaceArgon-Regular.otf" id="2_4im2l"]
 [ext_resource type="PackedScene" uid="uid://1jdc1a14n4ep" path="res://parameter_control.tscn" id="2_gnk0g"]
+[ext_resource type="Script" path="res://coordinat_container.gd" id="3_f7l3h"]
+[ext_resource type="Script" path="res://scale_container.gd" id="4_pwk5v"]
 
-[node name="Explorer" type="Control"]
+[node name="Explorer" type="Control" node_paths=PackedStringArray("mandelbrot_canvas", "mandelbrot_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +16,9 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_wak15")
+mandelbrot_canvas = NodePath("HBoxContainer/MarginContainer/Mandelbrot")
+mandelbrot_container = NodePath("HBoxContainer/MarginContainer")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -32,7 +39,7 @@ grow_vertical = 2
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
+size_flags_stretch_ratio = 3.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
@@ -41,7 +48,7 @@ theme_override_constants/margin_bottom = 20
 [node name="Mandelbrot" parent="HBoxContainer/MarginContainer" instance=ExtResource("1_hjfbu")]
 clip_contents = true
 layout_mode = 2
-canvas_size = Vector2(1620, 1960)
+canvas_size = Vector2(1832, 2000)
 initial_position = Vector2(0.9, 1.1)
 offset = Vector2(1.25, 1.5)
 initial_zoom = -3.2
@@ -59,14 +66,23 @@ layout_mode = 2
 [node name="ProgramTitle" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_4im2l")
 theme_override_font_sizes/font_size = 48
-text = "Mandelbrot Fractal Explorer"
+text = "Mandelbrot
+Fractal
+Explorer"
+horizontal_alignment = 1
+
+[node name="ProgramVersion" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_4im2l")
+text = "V 1.0"
 horizontal_alignment = 1
 
 [node name="ParameterControl_TimeScale" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
 layout_mode = 2
 size_flags_vertical = 3
-parameter_name = "Time Scale"
+parameter_name = "Palette Cycle Speed"
 parameter_key = "time_scale"
 parameter_range = Vector2(0, 2)
 parameter_step = 0.05
@@ -75,7 +91,7 @@ parameter_default = 0.05
 [node name="ParameterControl_PaletteScale" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
 layout_mode = 2
 size_flags_vertical = 3
-parameter_name = "Palette Scale"
+parameter_name = "Palette Repetition"
 parameter_key = "palette_scale"
 parameter_range = Vector2(0, 2)
 parameter_step = 0.05
@@ -84,7 +100,7 @@ parameter_default = 0.75
 [node name="ParameterControl_PaletteScaleModulation" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
 layout_mode = 2
 size_flags_vertical = 3
-parameter_name = "Palette Scale Modulation"
+parameter_name = "Palette Repetition Modulation"
 parameter_key = "palette_scale_modulation"
 parameter_range = Vector2(0, 1)
 parameter_step = 0.05
@@ -93,27 +109,138 @@ parameter_default = 0.25
 [node name="ParameterControl_PaletteScaleModulationSpeed" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
 layout_mode = 2
 size_flags_vertical = 3
+parameter_name = "Palette Repetition Modulation Speed"
+parameter_key = "palette_scale_modulation_speed"
+parameter_range = Vector2(0, 1)
+parameter_step = 0.05
+parameter_default = 0.1
 
 [node name="ParameterControl_IterationEffect" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
 layout_mode = 2
 size_flags_vertical = 3
+parameter_name = "Iteration Effect"
+parameter_key = "iteration_effect"
+parameter_range = Vector2(0, 2)
+parameter_step = 0.05
+parameter_default = 0.5
 
 [node name="ParameterControl_IterationEffectModulation" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
 layout_mode = 2
 size_flags_vertical = 3
+parameter_name = "Iteration Effect Modulation"
+parameter_key = "iteration_effect_modulation"
+parameter_range = Vector2(0, 1)
+parameter_step = 0.05
+parameter_default = 0.25
 
 [node name="ParameterControl_IterationEffectModulationSpeed" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
 layout_mode = 2
 size_flags_vertical = 3
+parameter_name = "Iteration Effect Modulation Speed"
+parameter_key = "iteration_effect_modulation_speed"
+parameter_range = Vector2(0, 1)
+parameter_step = 0.05
+parameter_default = 0.25
 
 [node name="ParameterControl_Gamma" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
 layout_mode = 2
 size_flags_vertical = 3
+parameter_name = "Gamma"
+parameter_key = "gamma"
+parameter_range = Vector2(0.5, 2)
+parameter_step = 0.05
+parameter_default = 1.25
 
 [node name="ParameterControl_GammaModulation" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
 layout_mode = 2
 size_flags_vertical = 3
+parameter_name = "Gamma Modulation"
+parameter_key = "gamma_modulation"
+parameter_range = Vector2(0, 1)
+parameter_step = 0.05
+parameter_default = 0.5
 
 [node name="ParameterControl_GammaModulationSpeed" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
 layout_mode = 2
 size_flags_vertical = 3
+parameter_name = "Gamma Modulation Speed"
+parameter_key = "gamma_modulation_speed"
+parameter_range = Vector2(0, 1)
+parameter_step = 0.05
+parameter_default = 0.15
+
+[node name="CoordinatContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/VSplitContainer" node_paths=PackedStringArray("top_left_value", "bottom_right_value")]
+layout_mode = 2
+size_flags_vertical = 10
+script = ExtResource("3_f7l3h")
+top_left_value = NodePath("HBoxContainer/TopLeftValue")
+bottom_right_value = NodePath("HBoxContainer2/BottomRightValue")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="TopLeftLabel" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_4im2l")
+text = "Top left:"
+
+[node name="TopLeftValue" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+size_flags_stretch_ratio = 2.0
+theme_override_fonts/font = ExtResource("2_4im2l")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="BottomRightLabel" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_4im2l")
+text = "Bottom right:"
+
+[node name="BottomRightValue" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+size_flags_stretch_ratio = 2.0
+theme_override_fonts/font = ExtResource("2_4im2l")
+
+[node name="ScaleContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VSplitContainer" node_paths=PackedStringArray("scale_value")]
+layout_mode = 2
+size_flags_vertical = 2
+script = ExtResource("4_pwk5v")
+scale_value = NodePath("ScaleValue")
+
+[node name="ScaleLabel" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer/ScaleContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_4im2l")
+text = "Scale:"
+
+[node name="ScaleValue" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer/ScaleContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
+theme_override_fonts/font = ExtResource("2_4im2l")
+
+[connection signal="coordinates_updated" from="HBoxContainer/MarginContainer/Mandelbrot" to="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer" method="_on_mandelbrot_coordinates_updated"]
+[connection signal="scale_updated" from="HBoxContainer/MarginContainer/Mandelbrot" to="HBoxContainer/MarginContainer2/VSplitContainer/ScaleContainer" method="_on_mandelbrot_scale_updated"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/ParameterControl_TimeScale" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_time_scale_parameter_changed"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/ParameterControl_PaletteScale" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_palette_scale_parameter_changed"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/ParameterControl_PaletteScaleModulation" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_palette_scale_modulation_parameter_changed"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/ParameterControl_PaletteScaleModulationSpeed" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_palette_scale_modulation_speed_parameter_changed"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/ParameterControl_IterationEffect" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_iteration_effect_parameter_changed"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/ParameterControl_IterationEffectModulation" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_iteration_effect_modulation_parameter_changed"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/ParameterControl_IterationEffectModulationSpeed" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_iteration_effect_modulation_speed_parameter_changed"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/ParameterControl_Gamma" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_gamma_parameter_changed"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/ParameterControl_GammaModulation" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_gamma_modulation_parameter_changed"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/ParameterControl_GammaModulationSpeed" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_gamma_modulation_speed_parameter_changed"]

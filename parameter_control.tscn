@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://1jdc1a14n4ep"]
+[gd_scene load_steps=3 format=3 uid="uid://1jdc1a14n4ep"]
 
 [ext_resource type="Script" path="res://parameter_control.gd" id="1_gpbye"]
+[ext_resource type="FontFile" uid="uid://dgfsivmvqujnp" path="res://MonaspaceArgon-Regular.otf" id="2_lt085"]
 
 [node name="ParameterControl" type="Control"]
 layout_mode = 3
@@ -11,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gpbye")
 
-[node name="HSplitContainer" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,22 +20,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="HSplitContainer"]
+[node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Default"
-horizontal_alignment = 1
+size_flags_vertical = 10
+theme_override_fonts/font = ExtResource("2_lt085")
 
-[node name="HSlider" type="HSlider" parent="HSplitContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 2.0
+max_value = 0.0
+step = 0.0
 tick_count = 10
 
-[node name="CurrentValue" type="Label" parent="HSplitContainer"]
+[node name="CurrentValue" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
+theme_override_fonts/font = ExtResource("2_lt085")
+text = "0"
 
-[connection signal="value_changed" from="HSplitContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]

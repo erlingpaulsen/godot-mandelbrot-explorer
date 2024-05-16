@@ -9,9 +9,9 @@ signal parameter_changed(parameter_key: String, new_value: float)
 @export var parameter_step: float
 @export var parameter_default: float
 
-@onready var label = $HSplitContainer/Label
-@onready var slider = $HSplitContainer/HSlider
-@onready var value_label = $HSplitContainer/CurrentValue
+@onready var label = $VBoxContainer/Label
+@onready var slider = $VBoxContainer/HBoxContainer/HSlider
+@onready var value_label = $VBoxContainer/HBoxContainer/CurrentValue
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
