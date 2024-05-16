@@ -1,0 +1,119 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8tvjkmbunjo0"]
+
+[ext_resource type="PackedScene" uid="uid://ilni8p6uokth" path="res://mandelbrot.tscn" id="1_hjfbu"]
+[ext_resource type="PackedScene" uid="uid://1jdc1a14n4ep" path="res://parameter_control.tscn" id="2_gnk0g"]
+
+[node name="Explorer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Mandelbrot" parent="HBoxContainer/MarginContainer" instance=ExtResource("1_hjfbu")]
+clip_contents = true
+layout_mode = 2
+canvas_size = Vector2(1620, 1960)
+initial_position = Vector2(0.9, 1.1)
+offset = Vector2(1.25, 1.5)
+initial_zoom = -3.2
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 50
+
+[node name="VSplitContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="ProgramTitle" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
+text = "Mandelbrot Fractal Explorer"
+horizontal_alignment = 1
+
+[node name="ParameterControl_TimeScale" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+size_flags_vertical = 3
+parameter_name = "Time Scale"
+parameter_key = "time_scale"
+parameter_range = Vector2(0, 2)
+parameter_step = 0.05
+parameter_default = 0.05
+
+[node name="ParameterControl_PaletteScale" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+size_flags_vertical = 3
+parameter_name = "Palette Scale"
+parameter_key = "palette_scale"
+parameter_range = Vector2(0, 2)
+parameter_step = 0.05
+parameter_default = 0.75
+
+[node name="ParameterControl_PaletteScaleModulation" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+size_flags_vertical = 3
+parameter_name = "Palette Scale Modulation"
+parameter_key = "palette_scale_modulation"
+parameter_range = Vector2(0, 1)
+parameter_step = 0.05
+parameter_default = 0.25
+
+[node name="ParameterControl_PaletteScaleModulationSpeed" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ParameterControl_IterationEffect" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ParameterControl_IterationEffectModulation" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ParameterControl_IterationEffectModulationSpeed" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ParameterControl_Gamma" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ParameterControl_GammaModulation" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ParameterControl_GammaModulationSpeed" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+size_flags_vertical = 3
