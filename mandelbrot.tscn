@@ -9,16 +9,19 @@ shader_parameter/position = null
 shader_parameter/offset = null
 shader_parameter/size = Vector2(2500, 2000)
 shader_parameter/zoom = null
-shader_parameter/time_scale = 0.05
-shader_parameter/palette_scale = 0.75
-shader_parameter/palette_scale_modulation = 0.25
-shader_parameter/palette_scale_modulation_speed = 0.1
+shader_parameter/palette_phase_r = 0.263
+shader_parameter/palette_phase_g = 0.416
+shader_parameter/palette_phase_b = 0.557
+shader_parameter/palette_cycle_speed = 0.05
+shader_parameter/distance_effect = 0.75
+shader_parameter/distance_effect_mod = 0.25
+shader_parameter/distance_effect_mod_speed = 0.1
 shader_parameter/iteration_effect = 0.5
-shader_parameter/iteration_effect_modulation = 0.25
-shader_parameter/iteration_effect_modulation_speed = 0.25
+shader_parameter/iteration_effect_mod = 0.25
+shader_parameter/iteration_effect_mod_speed = 0.25
 shader_parameter/gamma = 1.25
-shader_parameter/gamma_modulation = 0.5
-shader_parameter/gamma_modulation_speed = 0.15
+shader_parameter/gamma_mod = 0.5
+shader_parameter/gamma_mod_speed = 0.15
 
 [node name="Mandelbrot" type="ColorRect"]
 material = SubResource("ShaderMaterial_ghjfs")

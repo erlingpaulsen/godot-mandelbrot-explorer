@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ParameterData" load_steps=2 format=3 uid="uid://38ec7d3tecka"]
+
+[ext_resource type="Script" path="res://parameter_data.gd" id="1_x8v6y"]
+
+[resource]
+script = ExtResource("1_x8v6y")
+name = "Palette Phase Red"
+key = "palette_phase_r"
+range = Vector2(0, 1)
+step = 0.001
+default = 0.263

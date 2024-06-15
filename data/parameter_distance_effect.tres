@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ParameterData" load_steps=2 format=3 uid="uid://cvlptqpqo2mk"]
+
+[ext_resource type="Script" path="res://parameter_data.gd" id="1_3v38o"]
+
+[resource]
+script = ExtResource("1_3v38o")
+name = "Distance Effect"
+key = "distance_effect"
+range = Vector2(0, 1)
+step = 0.01
+default = 0.75

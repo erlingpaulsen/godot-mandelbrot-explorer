@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8tvjkmbunjo0"]
+[gd_scene load_steps=20 format=3 uid="uid://b8tvjkmbunjo0"]
 
 [ext_resource type="PackedScene" uid="uid://ilni8p6uokth" path="res://mandelbrot.tscn" id="1_hjfbu"]
 [ext_resource type="Script" path="res://mandelbrot_explorer.gd" id="1_wak15"]
@@ -6,6 +6,19 @@
 [ext_resource type="PackedScene" uid="uid://1jdc1a14n4ep" path="res://parameter_control.tscn" id="2_gnk0g"]
 [ext_resource type="Script" path="res://coordinat_container.gd" id="3_f7l3h"]
 [ext_resource type="Script" path="res://scale_container.gd" id="4_pwk5v"]
+[ext_resource type="Resource" uid="uid://38ec7d3tecka" path="res://data/parameter_palette_phase_r.tres" id="5_2c763"]
+[ext_resource type="Resource" uid="uid://csnvwfrwafdlq" path="res://data/parameter_palette_phase_g.tres" id="6_flmtm"]
+[ext_resource type="Resource" uid="uid://cenmc53ju28yr" path="res://data/parameter_palette_cycle_speed.tres" id="6_nefp1"]
+[ext_resource type="Resource" uid="uid://cvlptqpqo2mk" path="res://data/parameter_distance_effect.tres" id="7_imwdo"]
+[ext_resource type="Resource" uid="uid://bcotv55rxxp0s" path="res://data/parameter_palette_phase_b.tres" id="7_u7e6s"]
+[ext_resource type="Resource" uid="uid://c300rwf8x35kn" path="res://data/parameter_distance_effect_mod.tres" id="8_a0o0s"]
+[ext_resource type="Resource" uid="uid://tjwiphwf8y8y" path="res://data/parameter_distance_effect_mod_speed.tres" id="9_051ho"]
+[ext_resource type="Resource" uid="uid://2ksvs0s22fow" path="res://data/parameter_iteration_effect.tres" id="10_ds42k"]
+[ext_resource type="Resource" uid="uid://dokdopjshfwpv" path="res://data/parameter_iteration_effect_mod.tres" id="11_xi08d"]
+[ext_resource type="Resource" uid="uid://bcoe6vxywlpum" path="res://data/parameter_iteration_effect_mod_speed.tres" id="12_y3ixm"]
+[ext_resource type="Resource" uid="uid://byvvtaj7fsb2q" path="res://data/parameter_gamma.tres" id="13_o3avm"]
+[ext_resource type="Resource" uid="uid://cwc2i3ll8smw0" path="res://data/parameter_gamma_mod.tres" id="14_3vn6g"]
+[ext_resource type="Resource" uid="uid://dmhud3bh124rt" path="res://data/parameter_gamma_mod_speed.tres" id="15_x52mc"]
 
 [node name="Explorer" type="Control" node_paths=PackedStringArray("mandelbrot_canvas", "mandelbrot_container")]
 layout_mode = 3
@@ -79,102 +92,65 @@ theme_override_fonts/font = ExtResource("2_4im2l")
 text = "V 1.0"
 horizontal_alignment = 1
 
-[node name="ParameterControl_TimeScale" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+[node name="PalettePhaseRed" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
 layout_mode = 2
-size_flags_vertical = 3
-parameter_name = "Palette Cycle Speed"
-parameter_key = "time_scale"
-parameter_range = Vector2(0, 2)
-parameter_step = 0.05
-parameter_default = 0.05
+parameter_data = ExtResource("5_2c763")
 
-[node name="ParameterControl_PaletteScale" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+[node name="PalettePhaseGreen" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
 layout_mode = 2
-size_flags_vertical = 3
-parameter_name = "Palette Repetition"
-parameter_key = "palette_scale"
-parameter_range = Vector2(0, 2)
-parameter_step = 0.05
-parameter_default = 0.75
+parameter_data = ExtResource("6_flmtm")
 
-[node name="ParameterControl_PaletteScaleModulation" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+[node name="PalettePhaseBlue" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
 layout_mode = 2
-size_flags_vertical = 3
-parameter_name = "Palette Repetition Modulation"
-parameter_key = "palette_scale_modulation"
-parameter_range = Vector2(0, 1)
-parameter_step = 0.05
-parameter_default = 0.25
+parameter_data = ExtResource("7_u7e6s")
 
-[node name="ParameterControl_PaletteScaleModulationSpeed" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+[node name="PaletteCycleSpeed" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
 layout_mode = 2
-size_flags_vertical = 3
-parameter_name = "Palette Repetition Modulation Speed"
-parameter_key = "palette_scale_modulation_speed"
-parameter_range = Vector2(0, 1)
-parameter_step = 0.05
-parameter_default = 0.1
+parameter_data = ExtResource("6_nefp1")
 
-[node name="ParameterControl_IterationEffect" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+[node name="DistanceEffect" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
 layout_mode = 2
-size_flags_vertical = 3
-parameter_name = "Iteration Effect"
-parameter_key = "iteration_effect"
-parameter_range = Vector2(0, 2)
-parameter_step = 0.05
-parameter_default = 0.5
+parameter_data = ExtResource("7_imwdo")
 
-[node name="ParameterControl_IterationEffectModulation" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+[node name="DistanceEffectMod" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
 layout_mode = 2
-size_flags_vertical = 3
-parameter_name = "Iteration Effect Modulation"
-parameter_key = "iteration_effect_modulation"
-parameter_range = Vector2(0, 1)
-parameter_step = 0.05
-parameter_default = 0.25
+parameter_data = ExtResource("8_a0o0s")
 
-[node name="ParameterControl_IterationEffectModulationSpeed" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+[node name="DistanceEffectModSpeed" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
 layout_mode = 2
-size_flags_vertical = 3
-parameter_name = "Iteration Effect Modulation Speed"
-parameter_key = "iteration_effect_modulation_speed"
-parameter_range = Vector2(0, 1)
-parameter_step = 0.05
-parameter_default = 0.25
+parameter_data = ExtResource("9_051ho")
 
-[node name="ParameterControl_Gamma" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+[node name="IterationEffect" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
 layout_mode = 2
-size_flags_vertical = 3
-parameter_name = "Gamma"
-parameter_key = "gamma"
-parameter_range = Vector2(0.5, 2)
-parameter_step = 0.05
-parameter_default = 1.25
+parameter_data = ExtResource("10_ds42k")
 
-[node name="ParameterControl_GammaModulation" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+[node name="IterationEffectMod" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
 layout_mode = 2
-size_flags_vertical = 3
-parameter_name = "Gamma Modulation"
-parameter_key = "gamma_modulation"
-parameter_range = Vector2(0, 1)
-parameter_step = 0.05
-parameter_default = 0.5
+parameter_data = ExtResource("11_xi08d")
 
-[node name="ParameterControl_GammaModulationSpeed" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+[node name="IterationEffectModSpeed" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
 layout_mode = 2
-size_flags_vertical = 3
-parameter_name = "Gamma Modulation Speed"
-parameter_key = "gamma_modulation_speed"
-parameter_range = Vector2(0, 1)
-parameter_step = 0.05
-parameter_default = 0.15
+parameter_data = ExtResource("12_y3ixm")
 
-[node name="CoordinatContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/VSplitContainer" node_paths=PackedStringArray("top_left_value", "bottom_right_value")]
+[node name="Gamma" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+parameter_data = ExtResource("13_o3avm")
+
+[node name="GammaMod" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+parameter_data = ExtResource("14_3vn6g")
+
+[node name="GammaModSpeed" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+parameter_data = ExtResource("15_x52mc")
+
+[node name="CoordinatContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/VSplitContainer" node_paths=PackedStringArray("top_left_value", "bottom_right_value", "mouse_value")]
 layout_mode = 2
 size_flags_vertical = 10
 script = ExtResource("3_f7l3h")
 top_left_value = NodePath("HBoxContainer/TopLeftValue")
 bottom_right_value = NodePath("HBoxContainer2/BottomRightValue")
+mouse_value = NodePath("HBoxContainer3/MouseValue")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer"]
 layout_mode = 2
@@ -212,6 +188,24 @@ size_flags_vertical = 8
 size_flags_stretch_ratio = 2.0
 theme_override_fonts/font = ExtResource("2_4im2l")
 
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="MouseLabel" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_4im2l")
+text = "Mouse:"
+
+[node name="MouseValue" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+size_flags_stretch_ratio = 2.0
+theme_override_fonts/font = ExtResource("2_4im2l")
+
 [node name="ScaleContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VSplitContainer" node_paths=PackedStringArray("scale_value")]
 layout_mode = 2
 size_flags_vertical = 2
@@ -233,14 +227,18 @@ size_flags_stretch_ratio = 2.0
 theme_override_fonts/font = ExtResource("2_4im2l")
 
 [connection signal="coordinates_updated" from="HBoxContainer/MarginContainer/Mandelbrot" to="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer" method="_on_mandelbrot_coordinates_updated"]
+[connection signal="local_mouse_coordinates_updated" from="HBoxContainer/MarginContainer/Mandelbrot" to="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer" method="_on_mandelbrot_local_mouse_coordinates_updated"]
 [connection signal="scale_updated" from="HBoxContainer/MarginContainer/Mandelbrot" to="HBoxContainer/MarginContainer2/VSplitContainer/ScaleContainer" method="_on_mandelbrot_scale_updated"]
-[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/ParameterControl_TimeScale" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_time_scale_parameter_changed"]
-[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/ParameterControl_PaletteScale" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_palette_scale_parameter_changed"]
-[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/ParameterControl_PaletteScaleModulation" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_palette_scale_modulation_parameter_changed"]
-[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/ParameterControl_PaletteScaleModulationSpeed" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_palette_scale_modulation_speed_parameter_changed"]
-[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/ParameterControl_IterationEffect" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_iteration_effect_parameter_changed"]
-[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/ParameterControl_IterationEffectModulation" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_iteration_effect_modulation_parameter_changed"]
-[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/ParameterControl_IterationEffectModulationSpeed" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_iteration_effect_modulation_speed_parameter_changed"]
-[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/ParameterControl_Gamma" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_gamma_parameter_changed"]
-[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/ParameterControl_GammaModulation" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_gamma_modulation_parameter_changed"]
-[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/ParameterControl_GammaModulationSpeed" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_gamma_modulation_speed_parameter_changed"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/PalettePhaseRed" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_palette_phase_red_parameter_changed"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/PalettePhaseGreen" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_palette_phase_green_parameter_changed"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/PalettePhaseBlue" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_palette_phase_blue_parameter_changed"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/PaletteCycleSpeed" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_time_scale_parameter_changed"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/DistanceEffect" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_palette_scale_parameter_changed"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/DistanceEffectMod" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_palette_scale_modulation_parameter_changed"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/DistanceEffectModSpeed" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_palette_scale_modulation_speed_parameter_changed"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/IterationEffect" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_iteration_effect_parameter_changed"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/IterationEffectMod" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_iteration_effect_modulation_parameter_changed"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/IterationEffectModSpeed" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_iteration_effect_modulation_speed_parameter_changed"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/Gamma" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_gamma_parameter_changed"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/GammaMod" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_gamma_modulation_parameter_changed"]
+[connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/GammaModSpeed" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_parameter_control_gamma_modulation_speed_parameter_changed"]

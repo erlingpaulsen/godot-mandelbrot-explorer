@@ -1,11 +1,14 @@
 extends Control
 
 signal coordinates_updated(top_left: Vector2, bottom_right: Vector2)
+signal local_mouse_coordinates_updated(mouse_pos: Vector2)
 signal scale_updated(new_scale: float)
 
 var dragging = false
 var current_zoom: float
 var current_position: Vector2
+var current_uv0: Vector2
+var current_uv1: Vector2
 var mouse_pos: Vector2
 var mouse_outside = false
 
@@ -32,16 +35,6 @@ func _ready() -> void:
 	material.set_shader_parameter("position", initial_position)
 	material.set_shader_parameter("offset", offset)
 	material.set_shader_parameter("zoom", initial_zoom)
-	material.set_shader_parameter("time_scale", time_scale)
-	material.set_shader_parameter("palette_scale_modulation", palette_scale_modulation)
-	material.set_shader_parameter("palette_scale_modulation_speed", palette_scale_modulation_speed)
-	material.set_shader_parameter("palette_scale", palette_scale)
-	material.set_shader_parameter("iteration_effect", iteration_effect)
-	material.set_shader_parameter("iteration_effect_modulation", iteration_effect_modulation)
-	material.set_shader_parameter("iteration_effect_modulation_speed", iteration_effect_modulation_speed)
-	material.set_shader_parameter("gamma", gamma)
-	material.set_shader_parameter("gamma_modulation", gamma_modulation)
-	material.set_shader_parameter("gamma_modulation_speed", gamma_modulation_speed)
 	#canvas.material.set_shader_parameter("position", Vector2(0.9, 1.1))
 	#canvas.material.set_shader_parameter("zoom", -2.25)
 	#canvas.material.set_shader_parameter("position", Vector2(-0.110649, -0.988631))
@@ -53,9 +46,9 @@ func _process(delta: float) -> void:
 	var current_scale = 2.0 - current_zoom;
 	var aspect_ratio = size / size.y;
 	var position_corr = current_position + offset;
-	var uv0 = Vector2(1, -1) * (current_scale * Vector2(0, 0) * aspect_ratio - position_corr)
-	var uv1 = Vector2(1, -1) * (current_scale * Vector2(1, 1) * aspect_ratio - position_corr)
-	coordinates_updated.emit(uv0, uv1)
+	current_uv0 = Vector2(1, -1) * (current_scale * Vector2(0, 0) * aspect_ratio - position_corr)
+	current_uv1 = Vector2(1, -1) * (current_scale * Vector2(1, 1) * aspect_ratio - position_corr)
+	coordinates_updated.emit(current_uv0, current_uv1)
 	scale_updated.emit(current_scale)
 
 func _input(event):
@@ -69,6 +62,8 @@ func _input(event):
 			mouse_outside = true
 		else:
 			mouse_outside = false
+			var local_mouse_pos = (2.0 - current_zoom) * (mouse_pos / size.y) - (current_position + offset)
+			local_mouse_coordinates_updated.emit(local_mouse_pos)
 			
 	# Canvas dragging
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not mouse_outside:
@@ -140,4 +135,16 @@ func _on_parameter_control_gamma_modulation_parameter_changed(parameter_key: Str
 
 
 func _on_parameter_control_gamma_modulation_speed_parameter_changed(parameter_key: String, new_value: float) -> void:
+	material.set_shader_parameter(parameter_key, new_value)
+
+
+func _on_palette_phase_red_parameter_changed(parameter_key: String, new_value: float) -> void:
+	material.set_shader_parameter(parameter_key, new_value)
+
+
+func _on_palette_phase_green_parameter_changed(parameter_key: String, new_value: float) -> void:
+	material.set_shader_parameter(parameter_key, new_value)
+
+
+func _on_palette_phase_blue_parameter_changed(parameter_key: String, new_value: float) -> void:
 	material.set_shader_parameter(parameter_key, new_value)

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ParameterData" load_steps=2 format=3 uid="uid://dokdopjshfwpv"]
+
+[ext_resource type="Script" path="res://parameter_data.gd" id="1_o6auy"]
+
+[resource]
+script = ExtResource("1_o6auy")
+name = "Iteration Effect Modulation"
+key = "iteration_effect_mod"
+range = Vector2(0, 1)
+step = 0.01
+default = 0.25

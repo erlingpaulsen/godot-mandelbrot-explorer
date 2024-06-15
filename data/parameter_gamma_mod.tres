@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ParameterData" load_steps=2 format=3 uid="uid://cwc2i3ll8smw0"]
+
+[ext_resource type="Script" path="res://parameter_data.gd" id="1_vm46j"]
+
+[resource]
+script = ExtResource("1_vm46j")
+name = "Gamma Modulation"
+key = "gamma_mod"
+range = Vector2(0, 1)
+step = 0.01
+default = 0.5

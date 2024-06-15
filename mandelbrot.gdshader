@@ -4,23 +4,26 @@ uniform vec2 position;
 uniform vec2 offset;
 uniform vec2 size = vec2(2500.0, 2000.0);
 uniform float zoom;
-uniform float time_scale = 0.05;
-uniform float palette_scale = 0.75;
-uniform float palette_scale_modulation = 0.25;
-uniform float palette_scale_modulation_speed = 0.1;
+uniform float palette_phase_r = 0.263;
+uniform float palette_phase_g = 0.416;
+uniform float palette_phase_b = 0.557;
+uniform float palette_cycle_speed = 0.05;
+uniform float distance_effect = 0.75;
+uniform float distance_effect_mod = 0.25;
+uniform float distance_effect_mod_speed = 0.1;
 uniform float iteration_effect = 0.5;
-uniform float iteration_effect_modulation = 0.25;
-uniform float iteration_effect_modulation_speed = 0.25;
+uniform float iteration_effect_mod = 0.25;
+uniform float iteration_effect_mod_speed = 0.25;
 uniform float gamma = 1.25;
-uniform float gamma_modulation = 0.5;
-uniform float gamma_modulation_speed = 0.15;
+uniform float gamma_mod = 0.5;
+uniform float gamma_mod_speed = 0.15;
 
 //https://iquilezles.org/articles/palettes/
 vec3 palette(float t) {
     vec3 a = vec3(0.5, 0.5, 0.5);
     vec3 b = vec3(0.5, 0.5, 0.5);
     vec3 c = vec3(1.0, 1.0, 1.0);
-    vec3 d = vec3(0.263,0.416,0.557);
+    vec3 d = vec3(palette_phase_r, palette_phase_g, palette_phase_b);
 
     return a + b*cos( 6.28318*(c*t+d) );
 }
@@ -53,13 +56,13 @@ void fragment() {
 			n++;
 		} else {
 			// color based on size of z and number of iterations
-			float palette_factor = palette_scale + palette_scale_modulation * cos(palette_scale_modulation_speed * TIME);
-			float iteration_factor = pow(n, iteration_effect + iteration_effect_modulation * sin(iteration_effect_modulation_speed * TIME));
-			color = vec3(palette(time_scale * TIME - length(palette_factor * z/iteration_factor)));
+			float distance_factor = distance_effect + distance_effect_mod * cos(distance_effect_mod_speed * TIME);
+			float iteration_factor = pow(n, iteration_effect + iteration_effect_mod * sin(iteration_effect_mod_speed * TIME));
+			color = vec3(palette(palette_cycle_speed * TIME - length(distance_factor * z/iteration_factor)));
 			break;
 		}
 	}
-	color = pow(color, vec3(1.0/(gamma + gamma_modulation * cos(gamma_modulation_speed * TIME))));
+	color = pow(color, vec3(1.0/(gamma + gamma_mod * cos(gamma_mod_speed * TIME))));
 	//color = color - exp(1.0 / n);
 	//color = vec3(0.0 + 1.0/n);
 	COLOR = vec4(color, 1.0);

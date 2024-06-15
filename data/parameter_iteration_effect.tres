@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ParameterData" load_steps=2 format=3 uid="uid://2ksvs0s22fow"]
+
+[ext_resource type="Script" path="res://parameter_data.gd" id="1_lq5vk"]
+
+[resource]
+script = ExtResource("1_lq5vk")
+name = "Iteration Effect"
+key = "iteration_effect"
+range = Vector2(0, 1)
+step = 0.01
+default = 0.5
