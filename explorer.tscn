@@ -1,11 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://b8tvjkmbunjo0"]
+[gd_scene load_steps=19 format=3 uid="uid://b8tvjkmbunjo0"]
 
 [ext_resource type="PackedScene" uid="uid://ilni8p6uokth" path="res://mandelbrot.tscn" id="1_hjfbu"]
 [ext_resource type="Script" path="res://mandelbrot_explorer.gd" id="1_wak15"]
 [ext_resource type="FontFile" uid="uid://dgfsivmvqujnp" path="res://MonaspaceArgon-Regular.otf" id="2_4im2l"]
 [ext_resource type="PackedScene" uid="uid://1jdc1a14n4ep" path="res://parameter_control.tscn" id="2_gnk0g"]
-[ext_resource type="Script" path="res://coordinat_container.gd" id="3_f7l3h"]
-[ext_resource type="Script" path="res://scale_container.gd" id="4_pwk5v"]
 [ext_resource type="Resource" uid="uid://38ec7d3tecka" path="res://data/parameter_palette_phase_r.tres" id="5_2c763"]
 [ext_resource type="Resource" uid="uid://csnvwfrwafdlq" path="res://data/parameter_palette_phase_g.tres" id="6_flmtm"]
 [ext_resource type="Resource" uid="uid://cenmc53ju28yr" path="res://data/parameter_palette_cycle_speed.tres" id="6_nefp1"]
@@ -19,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://byvvtaj7fsb2q" path="res://data/parameter_gamma.tres" id="13_o3avm"]
 [ext_resource type="Resource" uid="uid://cwc2i3ll8smw0" path="res://data/parameter_gamma_mod.tres" id="14_3vn6g"]
 [ext_resource type="Resource" uid="uid://dmhud3bh124rt" path="res://data/parameter_gamma_mod_speed.tres" id="15_x52mc"]
+[ext_resource type="PackedScene" uid="uid://cpd36bkurprlo" path="res://runtime_container.tscn" id="18_64q5g"]
 
 [node name="Explorer" type="Control" node_paths=PackedStringArray("mandelbrot_canvas", "mandelbrot_container")]
 layout_mode = 3
@@ -144,91 +143,18 @@ parameter_data = ExtResource("14_3vn6g")
 layout_mode = 2
 parameter_data = ExtResource("15_x52mc")
 
-[node name="CoordinatContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/VSplitContainer" node_paths=PackedStringArray("top_left_value", "bottom_right_value", "mouse_value")]
+[node name="RuntimeContainer" parent="HBoxContainer/MarginContainer2/VSplitContainer" node_paths=PackedStringArray("top_left_value", "bottom_right_value", "scale_value", "mouse_value", "frametime_value", "fps_value") instance=ExtResource("18_64q5g")]
 layout_mode = 2
-size_flags_vertical = 10
-script = ExtResource("3_f7l3h")
-top_left_value = NodePath("HBoxContainer/TopLeftValue")
-bottom_right_value = NodePath("HBoxContainer2/BottomRightValue")
-mouse_value = NodePath("HBoxContainer3/MouseValue")
+top_left_value = NodePath("TopLeftContainer/TopLeftValue")
+bottom_right_value = NodePath("BottomRightContainer/BottomRightValue")
+scale_value = NodePath("ScaleContainer/ScaleValue")
+mouse_value = NodePath("MouseContainer/MouseValue")
+frametime_value = NodePath("FrametimeContainer/FrametimeValue")
+fps_value = NodePath("FPSContainer/FPSValue")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer"]
-layout_mode = 2
-size_flags_vertical = 10
-
-[node name="TopLeftLabel" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("2_4im2l")
-text = "Top left:"
-
-[node name="TopLeftValue" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
-size_flags_stretch_ratio = 2.0
-theme_override_fonts/font = ExtResource("2_4im2l")
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer"]
-layout_mode = 2
-size_flags_vertical = 10
-
-[node name="BottomRightLabel" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("2_4im2l")
-text = "Bottom right:"
-
-[node name="BottomRightValue" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
-size_flags_stretch_ratio = 2.0
-theme_override_fonts/font = ExtResource("2_4im2l")
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer"]
-layout_mode = 2
-size_flags_vertical = 10
-
-[node name="MouseLabel" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer/HBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("2_4im2l")
-text = "Mouse:"
-
-[node name="MouseValue" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer/HBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
-size_flags_stretch_ratio = 2.0
-theme_override_fonts/font = ExtResource("2_4im2l")
-
-[node name="ScaleContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VSplitContainer" node_paths=PackedStringArray("scale_value")]
-layout_mode = 2
-size_flags_vertical = 2
-script = ExtResource("4_pwk5v")
-scale_value = NodePath("ScaleValue")
-
-[node name="ScaleLabel" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer/ScaleContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("2_4im2l")
-text = "Scale:"
-
-[node name="ScaleValue" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer/ScaleContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-size_flags_stretch_ratio = 2.0
-theme_override_fonts/font = ExtResource("2_4im2l")
-
-[connection signal="coordinates_updated" from="HBoxContainer/MarginContainer/Mandelbrot" to="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer" method="_on_mandelbrot_coordinates_updated"]
-[connection signal="local_mouse_coordinates_updated" from="HBoxContainer/MarginContainer/Mandelbrot" to="HBoxContainer/MarginContainer2/VSplitContainer/CoordinatContainer" method="_on_mandelbrot_local_mouse_coordinates_updated"]
-[connection signal="scale_updated" from="HBoxContainer/MarginContainer/Mandelbrot" to="HBoxContainer/MarginContainer2/VSplitContainer/ScaleContainer" method="_on_mandelbrot_scale_updated"]
+[connection signal="coordinates_updated" from="HBoxContainer/MarginContainer/Mandelbrot" to="HBoxContainer/MarginContainer2/VSplitContainer/RuntimeContainer" method="_on_mandelbrot_coordinates_updated"]
+[connection signal="local_mouse_coordinates_updated" from="HBoxContainer/MarginContainer/Mandelbrot" to="HBoxContainer/MarginContainer2/VSplitContainer/RuntimeContainer" method="_on_mandelbrot_local_mouse_coordinates_updated"]
+[connection signal="scale_updated" from="HBoxContainer/MarginContainer/Mandelbrot" to="HBoxContainer/MarginContainer2/VSplitContainer/RuntimeContainer" method="_on_mandelbrot_scale_updated"]
 [connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/PalettePhaseRed" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_palette_phase_red_parameter_changed"]
 [connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/PalettePhaseGreen" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_palette_phase_green_parameter_changed"]
 [connection signal="parameter_changed" from="HBoxContainer/MarginContainer2/VSplitContainer/PalettePhaseBlue" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_palette_phase_blue_parameter_changed"]
