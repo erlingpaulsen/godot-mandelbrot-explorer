@@ -15,10 +15,14 @@ run/main_scene="res://explorer.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+DynamicUI="*res://dynamic_ui.gd"
+
 [display]
 
-window/size/viewport_width=2500
-window/size/viewport_height=2000
+window/size/viewport_width=1400
+window/size/viewport_height=1000
 
 [dotnet]
 

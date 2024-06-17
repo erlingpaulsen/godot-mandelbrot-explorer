@@ -7,9 +7,11 @@ extends VBoxContainer
 @export var frametime_value: Label
 @export var fps_value: Label
 
+
 func _process(_delta: float):
 	frametime_value.text = str(Performance.get_monitor(Performance.TIME_PROCESS) * 1000) + ' ms'
 	fps_value.text = str(Performance.get_monitor(Performance.TIME_FPS))
+
 
 func _on_mandelbrot_coordinates_updated(top_left: Vector2, bottom_right: Vector2) -> void:
 	top_left_value.text = str(top_left)

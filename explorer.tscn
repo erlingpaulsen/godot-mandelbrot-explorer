@@ -68,28 +68,38 @@ initial_zoom = -3.2
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_top = 50
+size_flags_stretch_ratio = 1.5
+theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 50
+theme_override_constants/margin_bottom = 20
 
 [node name="VSplitContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2"]
 layout_mode = 2
 
 [node name="ProgramTitle" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("2_4im2l")
 theme_override_font_sizes/font_size = 48
-text = "Mandelbrot
-Fractal
-Explorer"
+text = "Mandelbrot Fractal Explorer"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="ProgramVersion" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_4im2l")
 text = "V 1.0"
 horizontal_alignment = 1
+
+[node name="ProgramDescription" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "
+Scroll to zoom and click and drag to pan around. Use the controls below to adjust color palette, coloring technique, overall gamma and the modulation of these parameters.
+
+"
+autowrap_mode = 2
 
 [node name="PalettePhaseRed" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
 layout_mode = 2

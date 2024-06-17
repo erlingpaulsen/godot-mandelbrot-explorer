@@ -62,9 +62,8 @@ void fragment() {
 			break;
 		}
 	}
-	color = pow(color, vec3(1.0/(gamma + gamma_mod * cos(gamma_mod_speed * TIME))));
-	//color = color - exp(1.0 / n);
-	//color = vec3(0.0 + 1.0/n);
+	float gamma_factor = max(gamma + gamma_mod * cos(gamma_mod_speed * TIME), 0.0);
+	color = pow(color, vec3(1.0/gamma_factor));
 	COLOR = vec4(color, 1.0);
 
 	//COLOR = vec4(vec3(uv, 0.0), 1.0);

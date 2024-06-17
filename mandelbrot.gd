@@ -17,17 +17,6 @@ var mouse_outside = false
 @export var offset: Vector2
 @export var initial_zoom: float
 
-@export var time_scale = 0.05
-@export var palette_scale_modulation = 0.25
-@export var palette_scale_modulation_speed = 0.1
-@export var palette_scale = 0.75
-@export var iteration_effect = 0.5
-@export var iteration_effect_modulation = 0.25
-@export var iteration_effect_modulation_speed = 0.25
-@export var gamma = 1.25
-@export var gamma_modulation = 0.5
-@export var gamma_modulation_speed = 0.15
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#size = canvas_size
@@ -96,6 +85,7 @@ func _input(event):
 func update_size(new_size: Vector2) -> void:
 	size = new_size
 	material.set_shader_parameter("size", size)
+	print('size updated', new_size)
 
 
 func _on_parameter_control_time_scale_parameter_changed(parameter_key: String, new_value: float) -> void:
