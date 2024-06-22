@@ -1,0 +1,140 @@
+[gd_resource type="Resource" script_class="PresetData" load_steps=16 format=3 uid="uid://b4lr3fb3750db"]
+
+[ext_resource type="Script" path="res://components/parameter_data.gd" id="1_uc57s"]
+[ext_resource type="Script" path="res://components/preset_data.gd" id="2_484fh"]
+
+[sub_resource type="Resource" id="Resource_anwq6"]
+resource_local_to_scene = true
+script = ExtResource("1_uc57s")
+name = "Distance Effect"
+key = "distance_effect"
+value_range = Vector2(0, 1)
+step = 0.01
+default = 0.75
+
+[sub_resource type="Resource" id="Resource_mn2ki"]
+resource_local_to_scene = true
+script = ExtResource("1_uc57s")
+name = "Distance Effect Modulation"
+key = "distance_effect_mod"
+value_range = Vector2(0, 1)
+step = 0.01
+default = 0.25
+
+[sub_resource type="Resource" id="Resource_shc4e"]
+resource_local_to_scene = true
+script = ExtResource("1_uc57s")
+name = "Distance Effect Modulation Speed"
+key = "distance_effect_mod_speed"
+value_range = Vector2(0, 1)
+step = 0.01
+default = 0.1
+
+[sub_resource type="Resource" id="Resource_eno60"]
+resource_local_to_scene = true
+script = ExtResource("1_uc57s")
+name = "Gamma"
+key = "gamma"
+value_range = Vector2(0, 1)
+step = 0.01
+default = 1.0
+
+[sub_resource type="Resource" id="Resource_qs6p6"]
+resource_local_to_scene = true
+script = ExtResource("1_uc57s")
+name = "Gamma Modulation"
+key = "gamma_mod"
+value_range = Vector2(0, 1)
+step = 0.01
+default = 0.5
+
+[sub_resource type="Resource" id="Resource_j0ke2"]
+resource_local_to_scene = true
+script = ExtResource("1_uc57s")
+name = "Gamma Modulation Speed"
+key = "gamma_mod_speed"
+value_range = Vector2(0, 1)
+step = 0.01
+default = 0.15
+
+[sub_resource type="Resource" id="Resource_hi8x2"]
+resource_local_to_scene = true
+script = ExtResource("1_uc57s")
+name = "Iteration Effect"
+key = "iteration_effect"
+value_range = Vector2(0, 1)
+step = 0.01
+default = 0.5
+
+[sub_resource type="Resource" id="Resource_t2kbe"]
+resource_local_to_scene = true
+script = ExtResource("1_uc57s")
+name = "Iteration Effect Modulation"
+key = "iteration_effect_mod"
+value_range = Vector2(0, 1)
+step = 0.01
+default = 0.25
+
+[sub_resource type="Resource" id="Resource_a1q8m"]
+resource_local_to_scene = true
+script = ExtResource("1_uc57s")
+name = "Iteration Effect Modulation Speed"
+key = "iteration_effect_mod_speed"
+value_range = Vector2(0, 1)
+step = 0.01
+default = 0.25
+
+[sub_resource type="Resource" id="Resource_bd7rx"]
+resource_local_to_scene = true
+script = ExtResource("1_uc57s")
+name = "Palette Cycle Speed"
+key = "palette_cycle_speed"
+value_range = Vector2(0, 1)
+step = 0.01
+default = 1.0
+
+[sub_resource type="Resource" id="Resource_27xt3"]
+resource_local_to_scene = true
+script = ExtResource("1_uc57s")
+name = "Palette Phase Blue"
+key = "palette_phase_b"
+value_range = Vector2(0, 1)
+step = 0.001
+default = 0.221
+
+[sub_resource type="Resource" id="Resource_6idi0"]
+resource_local_to_scene = true
+script = ExtResource("1_uc57s")
+name = "Palette Phase Green"
+key = "palette_phase_g"
+value_range = Vector2(0, 1)
+step = 0.001
+default = 0.416
+
+[sub_resource type="Resource" id="Resource_nwp7f"]
+resource_local_to_scene = true
+script = ExtResource("1_uc57s")
+name = "Palette Phase Red"
+key = "palette_phase_r"
+value_range = Vector2(0, 1)
+step = 0.001
+default = 0.885
+
+[resource]
+script = ExtResource("2_484fh")
+position = Vector2(-0.952568, -0.527768)
+offset = Vector2(1.25, 1.5)
+zoom = 1.61688
+palette_phase_r = SubResource("Resource_nwp7f")
+palette_phase_g = SubResource("Resource_6idi0")
+palette_phase_b = SubResource("Resource_27xt3")
+palette_cycle_speed = SubResource("Resource_bd7rx")
+distance_effect = SubResource("Resource_anwq6")
+distance_effect_mod = SubResource("Resource_mn2ki")
+distance_effect_mod_speed = SubResource("Resource_shc4e")
+iteration_effect = SubResource("Resource_hi8x2")
+iteration_effect_mod = SubResource("Resource_t2kbe")
+iteration_effect_mod_speed = SubResource("Resource_a1q8m")
+gamma = SubResource("Resource_eno60")
+gamma_mod = SubResource("Resource_qs6p6")
+gamma_mod_speed = SubResource("Resource_j0ke2")

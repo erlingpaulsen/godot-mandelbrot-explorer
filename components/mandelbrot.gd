@@ -7,7 +7,7 @@ var current_uv0: Vector2
 var current_uv1: Vector2
 var mouse_pos: Vector2
 var mouse_outside = false
-enum {FILE_DIALOG_LOADING, FILE_DIALOG_SAVING, FILE_DIALOG_NONE}
+enum {FILE_DIALOG_LOAD_PRESET, FILE_DIALOG_SAVE_PRESET, FILE_DIALOG_SAVE_IMAGE, FILE_DIALOG_NONE}
 var file_dialog = FILE_DIALOG_NONE
 
 @export var preset_data: PresetData
@@ -29,6 +29,7 @@ func _ready() -> void:
 	#canvas.material.set_shader_parameter("zoom", 1.97775826765936)
 	SignalBus.parameter_ready.connect(_on_parameter_ready)
 	SignalBus.parameter_changed.connect(_on_parameter_changed)
+	SignalBus.preset_loaded.connect(_on_preset_loaded)
 	_broadcast_scale_and_position()
 
 
@@ -102,23 +103,31 @@ func _on_parameter_changed(parameter_key: String, new_value: float) -> void:
 	preset_data[parameter_key].default = new_value
 
 
+func _on_preset_loaded(preset: PresetData) -> void:
+	preset_data = preset
+	material.set_shader_parameter("position", preset_data.position)
+	material.set_shader_parameter("offset", preset_data.offset)
+	material.set_shader_parameter("zoom", preset_data.zoom)
+
+
 func _on_file_dialog_file_selected(path: String) -> void:
-	if file_dialog == FILE_DIALOG_SAVING:
-		# var preset_data_copy = preset_data.duplicate(true)
-		# for prop in preset_data_copy.get_property_list():
-		# 	if prop.class_name == 'ParameterData':
-		# 		preset_data_copy[prop.name].resource_local_to_scene = true
+	if file_dialog == FILE_DIALOG_SAVE_PRESET:
 		var err = ResourceSaver.save(preset_data, path)
 		if err != OK:
 			printerr('Could not save file, error code ', err)
-	elif file_dialog == FILE_DIALOG_LOADING:
-		pass
+	elif file_dialog == FILE_DIALOG_LOAD_PRESET:
+		var loaded_preset = ResourceLoader.load(path)
+		SignalBus.preset_loaded.emit(loaded_preset)
 	file_dialog = FILE_DIALOG_NONE
 
 
 func _on_export_button_pressed() -> void:
-	file_dialog = FILE_DIALOG_SAVING
+	file_dialog = FILE_DIALOG_SAVE_PRESET
 
 
 func _on_load_button_pressed() -> void:
-	file_dialog = FILE_DIALOG_LOADING
+	file_dialog = FILE_DIALOG_LOAD_PRESET
+
+
+func _on_image_button_pressed() -> void:
+	file_dialog = FILE_DIALOG_SAVE_IMAGE

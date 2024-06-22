@@ -13,6 +13,7 @@ func _ready() -> void:
 	slider.min_value = parameter_data.value_range[0]
 	slider.max_value = parameter_data.value_range[1]
 	slider.step = parameter_data.step
+	SignalBus.preset_loaded.connect(_on_preset_loaded)
 	SignalBus.parameter_ready.emit(self)
 	
 
@@ -27,3 +28,9 @@ func _on_h_slider_value_changed(value: float) -> void:
 	parameter_data.default = value
 	value_label.text = String.num(value, 2)
 	SignalBus.parameter_changed.emit(parameter_data.key, value)
+
+func _on_preset_loaded(preset: PresetData) -> void:
+	for p in preset.get_property_list():
+		if p.class_name == 'ParameterData' and p.name == parameter_data.key:
+			parameter_data = preset[p.name]
+			set_parameter_value(parameter_data.default)

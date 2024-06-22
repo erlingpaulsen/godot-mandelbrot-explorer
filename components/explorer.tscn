@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://dgfsivmvqujnp" path="res://font/MonaspaceArgon-Regular.otf" id="2_4im2l"]
 [ext_resource type="PackedScene" uid="uid://ilni8p6uokth" path="res://components/mandelbrot.tscn" id="2_g5u35"]
 [ext_resource type="PackedScene" uid="uid://1jdc1a14n4ep" path="res://components/parameter_control.tscn" id="2_gnk0g"]
-[ext_resource type="Resource" uid="uid://rvek0faetvc2" path="res://preset_mini_mandelbrot.tres" id="3_y8gbo"]
+[ext_resource type="Resource" uid="uid://b4lr3fb3750db" path="res://preset2.tres" id="3_yp81q"]
 [ext_resource type="Resource" uid="uid://38ec7d3tecka" path="res://data/parameter_palette_phase_r.tres" id="5_2c763"]
 [ext_resource type="Resource" uid="uid://csnvwfrwafdlq" path="res://data/parameter_palette_phase_g.tres" id="6_flmtm"]
 [ext_resource type="Resource" uid="uid://cenmc53ju28yr" path="res://data/parameter_palette_cycle_speed.tres" id="6_nefp1"]
@@ -63,7 +63,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Mandelbrot" parent="HBoxContainer/MarginContainer" instance=ExtResource("2_g5u35")]
 layout_mode = 2
-preset_data = ExtResource("3_y8gbo")
+preset_data = ExtResource("3_yp81q")
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -75,6 +75,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="VSplitContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="ProgramTitle" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer"]
 custom_minimum_size = Vector2(200, 0)
@@ -158,20 +159,26 @@ layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VSplitContainer"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="ExportButton" type="Button" parent="HBoxContainer/MarginContainer2/VSplitContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 7
 size_flags_vertical = 6
 toggle_mode = true
 text = "Export preset"
 
 [node name="LoadButton" type="Button" parent="HBoxContainer/MarginContainer2/VSplitContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 7
 size_flags_vertical = 6
 toggle_mode = true
 text = "Load preset"
+
+[node name="ImageButton" type="Button" parent="HBoxContainer/MarginContainer2/VSplitContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 7
+text = "Save Image"
 
 [node name="FileDialog" type="FileDialog" parent="HBoxContainer/MarginContainer2/VSplitContainer/HBoxContainer"]
 disable_3d = true
@@ -188,4 +195,5 @@ script = ExtResource("19_lqy7i")
 [connection signal="pressed" from="HBoxContainer/MarginContainer2/VSplitContainer/HBoxContainer/ExportButton" to="HBoxContainer/MarginContainer2/VSplitContainer/HBoxContainer/FileDialog" method="_on_export_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer2/VSplitContainer/HBoxContainer/LoadButton" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_load_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer2/VSplitContainer/HBoxContainer/LoadButton" to="HBoxContainer/MarginContainer2/VSplitContainer/HBoxContainer/FileDialog" method="_on_load_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer2/VSplitContainer/HBoxContainer/ImageButton" to="HBoxContainer/MarginContainer2/VSplitContainer/HBoxContainer/FileDialog" method="_on_image_button_pressed"]
 [connection signal="file_selected" from="HBoxContainer/MarginContainer2/VSplitContainer/HBoxContainer/FileDialog" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_file_dialog_file_selected"]
