@@ -18,15 +18,6 @@ func _ready() -> void:
 	material.set_shader_parameter("position", preset_data.position)
 	material.set_shader_parameter("offset", preset_data.offset)
 	material.set_shader_parameter("zoom", preset_data.zoom)
-	# for prop in preset_data.get_property_list():
-	# 	if prop.class_name == 'ParameterData':
-	# 		print(prop.name, ' ', preset_data[prop.name].default)
-	# 		material.set_shader_parameter(prop.name, preset_data[prop.name].default)
-	# 		print(prop.name, ' ', preset_data[prop.name].default, ' ', material.get_shader_parameter(prop.name, preset_data[prop.name].default))
-	#canvas.material.set_shader_parameter("position", Vector2(0.9, 1.1))
-	#canvas.material.set_shader_parameter("zoom", -2.25)
-	#canvas.material.set_shader_parameter("position", Vector2(-0.110649, -0.988631))
-	#canvas.material.set_shader_parameter("zoom", 1.97775826765936)
 	SignalBus.parameter_ready.connect(_on_parameter_ready)
 	SignalBus.parameter_changed.connect(_on_parameter_changed)
 	SignalBus.preset_loaded.connect(_on_preset_loaded)
@@ -36,7 +27,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	_broadcast_scale_and_position()
-	update_size(get_parent_control().size - DynamicUI.get_total_margin())
+	update_size(get_parent().get_parent().size)# - DynamicUI.get_total_margin())
 
 func _input(event):
 	current_zoom = material.get_shader_parameter("zoom")
@@ -118,6 +109,10 @@ func _on_file_dialog_file_selected(path: String) -> void:
 	elif file_dialog == FILE_DIALOG_LOAD_PRESET:
 		var loaded_preset = ResourceLoader.load(path)
 		SignalBus.preset_loaded.emit(loaded_preset)
+	elif file_dialog == FILE_DIALOG_SAVE_IMAGE:
+		var err = get_viewport().get_texture().get_image().save_png(path)
+		if err != OK:
+			printerr('Could not save file, error code ', err)
 	file_dialog = FILE_DIALOG_NONE
 
 

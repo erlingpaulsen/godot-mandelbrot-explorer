@@ -18,16 +18,19 @@ func _process(_delta: float) -> void:
 func _on_export_button_pressed() -> void:
 	file_mode = FileDialog.FILE_MODE_SAVE_FILE
 	filters = filters_tres
+	path = ''
 	show()
 
 
 func _on_load_button_pressed() -> void:
 	file_mode = FileDialog.FILE_MODE_OPEN_FILE
 	filters = filters_tres
+	path = ''
 	show()
 
 
 func _on_image_button_pressed() -> void:
 	file_mode = FileDialog.FILE_MODE_SAVE_FILE
 	filters = filters_png
+	path = ''
 	show()
