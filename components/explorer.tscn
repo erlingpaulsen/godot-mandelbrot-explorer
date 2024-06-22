@@ -1,0 +1,191 @@
+[gd_scene load_steps=22 format=3 uid="uid://b8tvjkmbunjo0"]
+
+[ext_resource type="Script" path="res://components/mandelbrot_explorer.gd" id="1_wak15"]
+[ext_resource type="FontFile" uid="uid://dgfsivmvqujnp" path="res://font/MonaspaceArgon-Regular.otf" id="2_4im2l"]
+[ext_resource type="PackedScene" uid="uid://ilni8p6uokth" path="res://components/mandelbrot.tscn" id="2_g5u35"]
+[ext_resource type="PackedScene" uid="uid://1jdc1a14n4ep" path="res://components/parameter_control.tscn" id="2_gnk0g"]
+[ext_resource type="Resource" uid="uid://rvek0faetvc2" path="res://preset_mini_mandelbrot.tres" id="3_y8gbo"]
+[ext_resource type="Resource" uid="uid://38ec7d3tecka" path="res://data/parameter_palette_phase_r.tres" id="5_2c763"]
+[ext_resource type="Resource" uid="uid://csnvwfrwafdlq" path="res://data/parameter_palette_phase_g.tres" id="6_flmtm"]
+[ext_resource type="Resource" uid="uid://cenmc53ju28yr" path="res://data/parameter_palette_cycle_speed.tres" id="6_nefp1"]
+[ext_resource type="Resource" uid="uid://cvlptqpqo2mk" path="res://data/parameter_distance_effect.tres" id="7_imwdo"]
+[ext_resource type="Resource" uid="uid://bcotv55rxxp0s" path="res://data/parameter_palette_phase_b.tres" id="7_u7e6s"]
+[ext_resource type="Resource" uid="uid://c300rwf8x35kn" path="res://data/parameter_distance_effect_mod.tres" id="8_a0o0s"]
+[ext_resource type="Resource" uid="uid://tjwiphwf8y8y" path="res://data/parameter_distance_effect_mod_speed.tres" id="9_051ho"]
+[ext_resource type="Resource" uid="uid://2ksvs0s22fow" path="res://data/parameter_iteration_effect.tres" id="10_ds42k"]
+[ext_resource type="Resource" uid="uid://dokdopjshfwpv" path="res://data/parameter_iteration_effect_mod.tres" id="11_xi08d"]
+[ext_resource type="Resource" uid="uid://bcoe6vxywlpum" path="res://data/parameter_iteration_effect_mod_speed.tres" id="12_y3ixm"]
+[ext_resource type="Resource" uid="uid://byvvtaj7fsb2q" path="res://data/parameter_gamma.tres" id="13_o3avm"]
+[ext_resource type="Resource" uid="uid://cwc2i3ll8smw0" path="res://data/parameter_gamma_mod.tres" id="14_3vn6g"]
+[ext_resource type="Resource" uid="uid://dmhud3bh124rt" path="res://data/parameter_gamma_mod_speed.tres" id="15_x52mc"]
+[ext_resource type="PackedScene" uid="uid://cpd36bkurprlo" path="res://components/runtime_container.tscn" id="18_64q5g"]
+[ext_resource type="Script" path="res://file_dialog.gd" id="19_lqy7i"]
+
+[sub_resource type="Theme" id="Theme_q6kqy"]
+default_font = ExtResource("2_4im2l")
+default_font_size = 14
+
+[node name="Explorer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_wak15")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Mandelbrot" parent="HBoxContainer/MarginContainer" instance=ExtResource("2_g5u35")]
+layout_mode = 2
+preset_data = ExtResource("3_y8gbo")
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VSplitContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="ProgramTitle" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_4im2l")
+theme_override_font_sizes/font_size = 48
+text = "Mandelbrot Fractal Explorer"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ProgramVersion" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_4im2l")
+text = "V 1.0"
+horizontal_alignment = 1
+
+[node name="ProgramDescription" type="Label" parent="HBoxContainer/MarginContainer2/VSplitContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "
+Scroll to zoom and click and drag to pan around. Use the controls below to adjust color palette, coloring technique, overall gamma and the modulation of these parameters.
+
+"
+autowrap_mode = 2
+
+[node name="PalettePhaseRed" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+parameter_data = ExtResource("5_2c763")
+
+[node name="PalettePhaseGreen" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+parameter_data = ExtResource("6_flmtm")
+
+[node name="PalettePhaseBlue" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+parameter_data = ExtResource("7_u7e6s")
+
+[node name="PaletteCycleSpeed" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+parameter_data = ExtResource("6_nefp1")
+
+[node name="DistanceEffect" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+parameter_data = ExtResource("7_imwdo")
+
+[node name="DistanceEffectMod" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+parameter_data = ExtResource("8_a0o0s")
+
+[node name="DistanceEffectModSpeed" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+parameter_data = ExtResource("9_051ho")
+
+[node name="IterationEffect" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+parameter_data = ExtResource("10_ds42k")
+
+[node name="IterationEffectMod" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+parameter_data = ExtResource("11_xi08d")
+
+[node name="IterationEffectModSpeed" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+parameter_data = ExtResource("12_y3ixm")
+
+[node name="Gamma" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+parameter_data = ExtResource("13_o3avm")
+
+[node name="GammaMod" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+parameter_data = ExtResource("14_3vn6g")
+
+[node name="GammaModSpeed" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("2_gnk0g")]
+layout_mode = 2
+parameter_data = ExtResource("15_x52mc")
+
+[node name="RuntimeContainer" parent="HBoxContainer/MarginContainer2/VSplitContainer" instance=ExtResource("18_64q5g")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VSplitContainer"]
+layout_mode = 2
+
+[node name="ExportButton" type="Button" parent="HBoxContainer/MarginContainer2/VSplitContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+toggle_mode = true
+text = "Export preset"
+
+[node name="LoadButton" type="Button" parent="HBoxContainer/MarginContainer2/VSplitContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+toggle_mode = true
+text = "Load preset"
+
+[node name="FileDialog" type="FileDialog" parent="HBoxContainer/MarginContainer2/VSplitContainer/HBoxContainer"]
+disable_3d = true
+title = "Export preset"
+initial_position = 1
+size = Vector2i(600, 400)
+theme = SubResource("Theme_q6kqy")
+ok_button_text = "Save"
+access = 2
+filters = PackedStringArray("*.tres")
+script = ExtResource("19_lqy7i")
+
+[connection signal="pressed" from="HBoxContainer/MarginContainer2/VSplitContainer/HBoxContainer/ExportButton" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_export_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer2/VSplitContainer/HBoxContainer/ExportButton" to="HBoxContainer/MarginContainer2/VSplitContainer/HBoxContainer/FileDialog" method="_on_export_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer2/VSplitContainer/HBoxContainer/LoadButton" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_load_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer2/VSplitContainer/HBoxContainer/LoadButton" to="HBoxContainer/MarginContainer2/VSplitContainer/HBoxContainer/FileDialog" method="_on_load_button_pressed"]
+[connection signal="file_selected" from="HBoxContainer/MarginContainer2/VSplitContainer/HBoxContainer/FileDialog" to="HBoxContainer/MarginContainer/Mandelbrot" method="_on_file_dialog_file_selected"]

@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="PresetData" load_steps=15 format=3 uid="uid://bk8noa7kya87l"]
+
+[ext_resource type="Resource" uid="uid://cvlptqpqo2mk" path="res://data/parameter_distance_effect.tres" id="1_fd5ry"]
+[ext_resource type="Resource" uid="uid://c300rwf8x35kn" path="res://data/parameter_distance_effect_mod.tres" id="2_7f55r"]
+[ext_resource type="Resource" uid="uid://tjwiphwf8y8y" path="res://data/parameter_distance_effect_mod_speed.tres" id="3_ab2ql"]
+[ext_resource type="Resource" uid="uid://byvvtaj7fsb2q" path="res://data/parameter_gamma.tres" id="4_40lgl"]
+[ext_resource type="Resource" uid="uid://cwc2i3ll8smw0" path="res://data/parameter_gamma_mod.tres" id="5_osdvp"]
+[ext_resource type="Resource" uid="uid://dmhud3bh124rt" path="res://data/parameter_gamma_mod_speed.tres" id="6_5h0k3"]
+[ext_resource type="Resource" uid="uid://2ksvs0s22fow" path="res://data/parameter_iteration_effect.tres" id="7_vontm"]
+[ext_resource type="Resource" uid="uid://dokdopjshfwpv" path="res://data/parameter_iteration_effect_mod.tres" id="8_hqhvu"]
+[ext_resource type="Resource" uid="uid://bcoe6vxywlpum" path="res://data/parameter_iteration_effect_mod_speed.tres" id="9_4qxtr"]
+[ext_resource type="Resource" uid="uid://cenmc53ju28yr" path="res://data/parameter_palette_cycle_speed.tres" id="10_6jma8"]
+[ext_resource type="Resource" uid="uid://bcotv55rxxp0s" path="res://data/parameter_palette_phase_b.tres" id="11_fvn3a"]
+[ext_resource type="Resource" uid="uid://csnvwfrwafdlq" path="res://data/parameter_palette_phase_g.tres" id="12_hweiq"]
+[ext_resource type="Resource" uid="uid://38ec7d3tecka" path="res://data/parameter_palette_phase_r.tres" id="13_ltpy0"]
+[ext_resource type="Script" path="res://components/preset_data.gd" id="14_hyncr"]
+
+[resource]
+script = ExtResource("14_hyncr")
+position = Vector2(0.9, 1.1)
+offset = Vector2(1.25, 1.5)
+zoom = -3.2
+palette_phase_r = ExtResource("13_ltpy0")
+palette_phase_g = ExtResource("12_hweiq")
+palette_phase_b = ExtResource("11_fvn3a")
+palette_cycle_speed = ExtResource("10_6jma8")
+distance_effect = ExtResource("1_fd5ry")
+distance_effect_mod = ExtResource("2_7f55r")
+distance_effect_mod_speed = ExtResource("3_ab2ql")
+iteration_effect = ExtResource("7_vontm")
+iteration_effect_mod = ExtResource("8_hqhvu")
+iteration_effect_mod_speed = ExtResource("9_4qxtr")
+gamma = ExtResource("4_40lgl")
+gamma_mod = ExtResource("5_osdvp")
+gamma_mod_speed = ExtResource("6_5h0k3")

@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="godot-mandelbrot-explorer"
-run/main_scene="res://explorer.tscn"
+run/main_scene="res://components/explorer.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-DynamicUI="*res://dynamic_ui.gd"
+DynamicUI="*res://components/dynamic_ui.gd"
+SignalBus="*res://components/signal_bus.gd"
 
 [display]
 
@@ -32,9 +33,3 @@ project/assembly_name="godot-mandelbrot-explorer"
 
 movie_writer/movie_file="D:/Erling/Code/Godot/godot-mandelbrot-explorer/mandelbrot.avi"
 movie_writer/fps=24
-
-[rendering]
-
-anti_aliasing/quality/msaa_2d=3
-anti_aliasing/quality/screen_space_aa=1
-anti_aliasing/quality/use_taa=true

@@ -1,0 +1,122 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpd36bkurprlo"]
+
+[ext_resource type="Script" path="res://components/runtime_container.gd" id="1_46sn5"]
+[ext_resource type="FontFile" uid="uid://dgfsivmvqujnp" path="res://font/MonaspaceArgon-Regular.otf" id="2_p74bf"]
+
+[node name="RuntimeContainer" type="VBoxContainer" node_paths=PackedStringArray("top_left_value", "bottom_right_value", "scale_value", "mouse_value", "frametime_value", "fps_value")]
+size_flags_vertical = 10
+script = ExtResource("1_46sn5")
+top_left_value = NodePath("TopLeftContainer/TopLeftValue")
+bottom_right_value = NodePath("BottomRightContainer/BottomRightValue")
+scale_value = NodePath("ScaleContainer/ScaleValue")
+mouse_value = NodePath("MouseContainer/MouseValue")
+frametime_value = NodePath("FrametimeContainer/FrametimeValue")
+fps_value = NodePath("FPSContainer/FPSValue")
+
+[node name="TopLeftContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="TopLeftLabel" type="Label" parent="TopLeftContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_p74bf")
+text = "Top left:"
+
+[node name="TopLeftValue" type="Label" parent="TopLeftContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+size_flags_stretch_ratio = 2.0
+theme_override_fonts/font = ExtResource("2_p74bf")
+
+[node name="BottomRightContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="BottomRightLabel" type="Label" parent="BottomRightContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_p74bf")
+text = "Bottom right:"
+
+[node name="BottomRightValue" type="Label" parent="BottomRightContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+size_flags_stretch_ratio = 2.0
+theme_override_fonts/font = ExtResource("2_p74bf")
+
+[node name="MouseContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="MouseLabel" type="Label" parent="MouseContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_p74bf")
+text = "Mouse:"
+
+[node name="MouseValue" type="Label" parent="MouseContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+size_flags_stretch_ratio = 2.0
+theme_override_fonts/font = ExtResource("2_p74bf")
+
+[node name="ScaleContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="ScaleLabel" type="Label" parent="ScaleContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_p74bf")
+text = "Scale:"
+
+[node name="ScaleValue" type="Label" parent="ScaleContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+size_flags_stretch_ratio = 2.0
+theme_override_fonts/font = ExtResource("2_p74bf")
+
+[node name="FrametimeContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="FrametimeLabel" type="Label" parent="FrametimeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_p74bf")
+text = "Frame time:"
+
+[node name="FrametimeValue" type="Label" parent="FrametimeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+size_flags_stretch_ratio = 2.0
+theme_override_fonts/font = ExtResource("2_p74bf")
+
+[node name="FPSContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="FPSLabel" type="Label" parent="FPSContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_p74bf")
+text = "FPS:"
+
+[node name="FPSValue" type="Label" parent="FPSContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+size_flags_stretch_ratio = 2.0
+theme_override_fonts/font = ExtResource("2_p74bf")
