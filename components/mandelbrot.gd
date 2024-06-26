@@ -25,9 +25,10 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	_broadcast_scale_and_position()
 	update_size(get_parent().get_parent().size)# - DynamicUI.get_total_margin())
+
 
 func _input(event):
 	current_zoom = material.get_shader_parameter("zoom")

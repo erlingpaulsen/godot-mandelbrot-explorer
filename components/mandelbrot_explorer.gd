@@ -4,18 +4,9 @@ var margin: int = 20
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_update_font()
 	_update_font_size()
 	_update_margins()
 	get_viewport().connect('size_changed', _on_viewport_size_changed)
-
-
-func _update_font() -> void:
-	var font = DynamicUI.get_font()
-	for child in find_children('*', 'Label', true, true):
-		child.add_theme_font_override('font', font)
-	for child in find_children('*', 'Button', true, true):
-		child.add_theme_font_override('font', font)
 
 
 func _update_font_size() -> void:

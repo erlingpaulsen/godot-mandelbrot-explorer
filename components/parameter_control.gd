@@ -3,9 +3,9 @@ extends Control
 
 @export var parameter_data: ParameterData
 
-@onready var label: Label = $VBoxContainer/Label
-@onready var slider: HSlider = $VBoxContainer/HBoxContainer/HSlider
-@onready var value_label: Label = $VBoxContainer/HBoxContainer/CurrentValue
+@onready var label: Label = %Label
+@onready var slider: HSlider = %HSlider
+@onready var value_label: Label = %CurrentValue
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,6 +28,7 @@ func _on_h_slider_value_changed(value: float) -> void:
 	parameter_data.default = value
 	value_label.text = String.num(value, 2)
 	SignalBus.parameter_changed.emit(parameter_data.key, value)
+
 
 func _on_preset_loaded(preset: PresetData) -> void:
 	for p in preset.get_property_list():

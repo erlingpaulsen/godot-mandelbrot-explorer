@@ -13,7 +13,7 @@ func _ready() -> void:
 	SignalBus.scale_updated.connect(_on_scale_updated)
 
 
-func _process(_delta: float):
+func _physics_process(_delta: float):
 	frametime_value.text = str(Performance.get_monitor(Performance.TIME_PROCESS) * 1000) + ' ms'
 	fps_value.text = str(Performance.get_monitor(Performance.TIME_FPS))
 
