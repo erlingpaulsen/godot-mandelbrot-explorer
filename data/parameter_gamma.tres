@@ -6,6 +6,6 @@
 script = ExtResource("1_gcx8b")
 name = "Gamma"
 key = "gamma"
-range = Vector2(0, 2)
+value_range = Vector2(0, 2)
 step = 0.01
 default = 1.25

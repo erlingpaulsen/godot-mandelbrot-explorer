@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://b8tvjkmbunjo0"]
 
-[ext_resource type="Script" path="res://components/mandelbrot_explorer.gd" id="1_wak15"]
+[ext_resource type="Script" uid="uid://dsoa256swew7o" path="res://components/mandelbrot_explorer.gd" id="1_wak15"]
 [ext_resource type="FontFile" uid="uid://dgfsivmvqujnp" path="res://font/MonaspaceArgon-Regular.otf" id="2_4im2l"]
 [ext_resource type="PackedScene" uid="uid://ilni8p6uokth" path="res://components/mandelbrot.tscn" id="2_g5u35"]
 [ext_resource type="PackedScene" uid="uid://1jdc1a14n4ep" path="res://components/parameter_control.tscn" id="2_gnk0g"]
@@ -19,7 +19,7 @@
 [ext_resource type="Resource" uid="uid://cwc2i3ll8smw0" path="res://data/parameter_gamma_mod.tres" id="14_3vn6g"]
 [ext_resource type="Resource" uid="uid://dmhud3bh124rt" path="res://data/parameter_gamma_mod_speed.tres" id="15_x52mc"]
 [ext_resource type="PackedScene" uid="uid://cpd36bkurprlo" path="res://components/runtime_container.tscn" id="18_64q5g"]
-[ext_resource type="Script" path="res://components/file_dialog.gd" id="19_lqy7i"]
+[ext_resource type="Script" uid="uid://dbu86cg3ty5ts" path="res://components/file_dialog.gd" id="19_lqy7i"]
 
 [sub_resource type="Theme" id="Theme_q6kqy"]
 default_font = ExtResource("2_4im2l")
@@ -197,7 +197,6 @@ title = "Export preset"
 initial_position = 1
 size = Vector2i(600, 400)
 theme = SubResource("Theme_q6kqy")
-ok_button_text = "Save"
 access = 2
 filters = PackedStringArray("*.tres")
 script = ExtResource("19_lqy7i")

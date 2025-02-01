@@ -22,6 +22,11 @@ func _ready() -> void:
 	SignalBus.parameter_changed.connect(_on_parameter_changed)
 	SignalBus.preset_loaded.connect(_on_preset_loaded)
 	_broadcast_scale_and_position()
+	print_debug('Preset loaded and Mandelbrot initialized')
+	print_debug('Preset data: ', preset_data)
+	print_debug('Shader: ', material.shader)
+	print_debug('Shader mode: ', material.shader.get_mode())
+	#print_debug('Shader uniforms: ', material.shader.get_shader_uniform_list())
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -88,11 +93,13 @@ func update_size(new_size: Vector2) -> void:
 func _on_parameter_ready(parameter_control: ParameterControl) -> void:
 	parameter_control.parameter_data = preset_data[parameter_control.parameter_data.key]
 	parameter_control.set_parameter_value(parameter_control.parameter_data.default)
+	print_debug('Parameter ready ', parameter_control.parameter_data.key)
 
 
 func _on_parameter_changed(parameter_key: String, new_value: float) -> void:
 	material.set_shader_parameter(parameter_key, new_value)
 	preset_data[parameter_key].default = new_value
+	print_debug('Shader uniform ', parameter_key, ' set to ', new_value)
 
 
 func _on_preset_loaded(preset: PresetData) -> void:

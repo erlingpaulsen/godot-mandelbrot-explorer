@@ -12,13 +12,13 @@ config_version=5
 
 config/name="godot-mandelbrot-explorer"
 run/main_scene="res://components/mandelbrot_explorer.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-DynamicUI="*res://components/dynamic_ui.gd"
 SignalBus="*res://components/signal_bus.gd"
+DynamicUI="*res://components/dynamic_ui.gd"
 
 [display]
 
@@ -37,3 +37,9 @@ movie_writer/fps=24
 [gui]
 
 theme/custom_font="res://font/MonaspaceArgon-Regular.otf"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

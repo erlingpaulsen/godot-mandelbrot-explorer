@@ -15,19 +15,20 @@ func _ready() -> void:
 	slider.step = parameter_data.step
 	SignalBus.preset_loaded.connect(_on_preset_loaded)
 	SignalBus.parameter_ready.emit(self)
+	print_debug('Parameter control ready. min: ', parameter_data.value_range[0], ' max: ', parameter_data.value_range[1], ' step: ', parameter_data.step, ' default: ', parameter_data.default)
 	
 
-func set_parameter_value(new_value: float) -> void:
-	#print_debug('Parameter ', parameter_data.key, ' set to ', new_value)
-	slider.value = new_value
+func set_parameter_value(new_value: float, override_slider=true) -> void:
+	if override_slider:
+		slider.value = new_value
 	value_label.text = String.num(new_value, 2)
-	SignalBus.parameter_changed.emit(parameter_data.key, slider.value)
+	SignalBus.parameter_changed.emit(parameter_data.key, new_value)
+	print_debug('Parameter ', parameter_data.key, ' set to ', new_value)
 
 
 func _on_h_slider_value_changed(value: float) -> void:
-	parameter_data.default = value
-	value_label.text = String.num(value, 2)
-	SignalBus.parameter_changed.emit(parameter_data.key, value)
+	print_debug(parameter_data.key, ': Value changed')
+	set_parameter_value(value, false)
 
 
 func _on_preset_loaded(preset: PresetData) -> void:

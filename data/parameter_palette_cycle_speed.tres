@@ -6,6 +6,6 @@
 script = ExtResource("1_q785g")
 name = "Palette Cycle Speed"
 key = "palette_cycle_speed"
-range = Vector2(0, 5)
+value_range = Vector2(0, 5)
 step = 0.01
 default = 0.05

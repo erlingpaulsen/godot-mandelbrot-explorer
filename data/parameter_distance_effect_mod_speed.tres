@@ -6,6 +6,6 @@
 script = ExtResource("1_u7qnc")
 name = "Distance Effect Modulation Speed"
 key = "distance_effect_mod_speed"
-range = Vector2(0, 5)
+value_range = Vector2(0, 5)
 step = 0.01
 default = 0.1

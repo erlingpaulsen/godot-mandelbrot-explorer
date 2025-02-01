@@ -6,6 +6,6 @@
 script = ExtResource("1_3v38o")
 name = "Distance Effect"
 key = "distance_effect"
-range = Vector2(0, 1)
+value_range = Vector2(0, 1)
 step = 0.01
 default = 0.75

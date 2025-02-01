@@ -6,6 +6,6 @@
 script = ExtResource("1_vm46j")
 name = "Gamma Modulation"
 key = "gamma_mod"
-range = Vector2(0, 1)
+value_range = Vector2(0, 1)
 step = 0.01
 default = 0.5
